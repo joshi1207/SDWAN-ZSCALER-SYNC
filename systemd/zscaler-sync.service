@@ -1,0 +1,16 @@
+[Unit]
+Description=Zscaler → Cisco vManage DPL Sync
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=zscaler-sync
+Group=zscaler-sync
+WorkingDirectory=/opt/zscaler-sync
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/opt/zscaler-sync/.venv/bin/python -u src/zscaler_to_vmanage.py
+Nice=5
+
+[Install]
+WantedBy=multi-user.target
