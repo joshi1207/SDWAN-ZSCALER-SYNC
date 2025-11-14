@@ -149,6 +149,49 @@ sudo systemctl enable --now zscaler-sync.timer
 
 ---
 
+##################################################################################################################################
+
+Users will:
+
+cp config/env.example .env
+# edit .env with their values
+
+On automation Host:
+
+sudo mkdir -p /opt/zscaler-sync
+sudo chown -R zscaler-sync:zscaler-sync /opt/zscaler-sync
+
+# from GitHub repo root:
+sudo rsync -av . /opt/zscaler-sync/
+
+cd /opt/zscaler-sync
+python3 -m venv .venv
+./.venv/bin/pip install -r requirements.txt
+
+cp config/env.example .env
+# edit .env
+
+sudo cp systemd/zscaler-sync.service /etc/systemd/system/
+sudo cp systemd/zscaler-sync.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now zscaler-sync.timer
+
+## Quick Start
+
+```bash
+git clone https://github.com/<you>/zscaler-vmanage-sync.git
+cd zscaler-vmanage-sync
+
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+
+cp config/env.example .env
+# edit .env with your vManage + Zscaler details
+
+python src/zscaler_to_vmanage.py --dry-run   # see planned changes
+python src/zscaler_to_vmanage.py             # apply to vManage
+
 # 📄 License
 
 MIT License (recommended)
