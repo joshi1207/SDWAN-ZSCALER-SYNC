@@ -1,0 +1,9 @@
+.env
+*.pyc
+__pycache__/
+backups/
+cache.json
+token_raw
+*.log
+*.swp
+.DS_Store
