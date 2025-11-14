@@ -67,7 +67,7 @@ python3 -m venv /opt/zscaler-sync/.venv
 
 ### 3. Clone repo
 ```bash
-sudo -u zscaler-sync git clone https://github.com/<you>/zscaler-vmanage-sync.git /opt/zscaler-sync/
+sudo -u zscaler-sync git clone https://github.com/joshi1207/zscaler-vmanage-sync.git /opt/zscaler-sync/
 ```
 
 ---
